@@ -1,4 +1,4 @@
-import { Bell, Search, User, ChevronDown } from "lucide-react";
+import { Bell, Search, User, ChevronDown, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,8 +10,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
+import { Link, useNavigate } from "react-router-dom";
 
 export function DashboardHeader() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // In a real app, this would clear auth state
+    navigate("/");
+  };
+
   return (
     <header className="h-16 bg-card border-b border-border px-6 flex items-center justify-between sticky top-0 z-10">
       {/* Search */}
@@ -51,11 +59,21 @@ export function DashboardHeader() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Perfil</DropdownMenuItem>
-            <DropdownMenuItem>Facturación</DropdownMenuItem>
-            <DropdownMenuItem>Configuración</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/configuracion">Perfil</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/facturas">Facturación</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/configuracion">Configuración</Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive">
+            <DropdownMenuItem 
+              className="text-destructive cursor-pointer"
+              onClick={handleLogout}
+            >
+              <LogOut className="w-4 h-4 mr-2" />
               Cerrar Sesión
             </DropdownMenuItem>
           </DropdownMenuContent>
