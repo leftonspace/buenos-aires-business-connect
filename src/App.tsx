@@ -16,6 +16,11 @@ import Analisis from "./pages/Analisis";
 import WhatsApp from "./pages/WhatsApp";
 import Configuracion from "./pages/Configuracion";
 import NotFound from "./pages/NotFound";
+// Consumer App
+import ConsumerHome from "./pages/consumer/ConsumerHome";
+import SearchResults from "./pages/consumer/SearchResults";
+import BusinessProfile from "./pages/consumer/BusinessProfile";
+import RateService from "./pages/consumer/RateService";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +31,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Consumer App Routes */}
+          <Route path="/consumidor" element={<ConsumerHome />} />
+          <Route path="/buscar" element={<SearchResults />} />
+          <Route path="/negocio/:id" element={<BusinessProfile />} />
+          <Route path="/calificar/:jobId" element={<RateService />} />
+          
+          {/* Admin/Business App Routes */}
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/trabajos" element={<Trabajos />} />
